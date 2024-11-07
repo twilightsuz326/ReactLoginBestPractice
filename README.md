@@ -1,7 +1,7 @@
-# React + Laravel 10 Sample
+# React + Laravel + Sanctum Login Best Practice
 
 ## Overview
-- 今後の開発で使うためのテンプレート
+- Laravel 10 + React + Sanctum でのログインのベストプラクティスを探る。
 
 ## cmd
 ```bash
