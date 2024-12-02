@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\AuthController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -15,16 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('/login', function (Request $request) {
-    $credentials = $request->only('email', 'password');
-
-    if (!Auth::attempt($credentials)) {
-        return response()->json(['message' => 'Unauthorized'], 401);
-    }
-
-    $request->session()->regenerate();
-    return response()->json(['user' => Auth::user()]);
-});
+Route::post('/login', [AuthController::class, 'login']);
 
 Route::post('/logout', function (Request $request) {
     Auth::logout();
