@@ -16,5 +16,15 @@ npm install -D @vitejs/plugin-react
 npm run dev
 ```
 
+## Add User
+```
+use App\Models\User;
+
+User::create([
+    'name' => 'Test User',
+    'email' => 'twilight.suz326@gmail.com',
+    'password' => 'password', 
+]);
+
 ## Image
 ![image](https://github.com/user-attachments/assets/65137c53-3384-4cba-bc09-ebe2461db985)
