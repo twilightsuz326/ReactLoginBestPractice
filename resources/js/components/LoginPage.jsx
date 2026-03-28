@@ -10,20 +10,21 @@ function LoginPage({setUser}) {
     const [alertState, setAlertState] = useState(null);
     const navigate = useNavigate();
 
-    const handleLogin = (event) => {
+    const handleLogin = async (event) => {
         event.preventDefault();
         setAlertState(null);
 
-        axios.post('/api/login', { email, password }, { withCredentials: true })
-            .then(response => {
-                setUser(response.data.user);
-                navigate('/dashboard');
-            })
-            .catch(error => {
-                const status = error.response?.status;
-                setAlertState(LOGIN_ALERT_MESSAGES[status] ?? LOGIN_ALERT_MESSAGES.default);
-            });
-    }
+        try {
+            await axios.get('/sanctum/csrf-cookie');
+
+            const response = await axios.post('/api/login', { email, password });
+            setUser(response.data.user);
+            navigate('/dashboard');
+        } catch (error) {
+            const status = error.response?.status;
+            setAlertState(LOGIN_ALERT_MESSAGES[status] ?? LOGIN_ALERT_MESSAGES.default);
+        }
+    };
 
     return (
         <div className="flex min-h-[calc(100vh-64px)] items-center justify-center bg-slate-50 px-4 py-10">
