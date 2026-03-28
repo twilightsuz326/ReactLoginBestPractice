@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// APIルート以外をReactに処理させる
+// API と ACME challenge を除いて React に処理させる
 Route::get('/{any}', function () {
     return view('app');
-})->where('any', '^(?!api).*$');
+})->where('any', '^(?!(api|\\.well-known)(/|$)).*');
