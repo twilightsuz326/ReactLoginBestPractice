@@ -10,7 +10,8 @@ function LoginPage({setUser}) {
     const [alertState, setAlertState] = useState(null);
     const navigate = useNavigate();
 
-    const handleLogin = () => {
+    const handleLogin = (event) => {
+        event.preventDefault();
         setAlertState(null);
 
         axios.post('/api/login', { email, password }, { withCredentials: true })
@@ -30,28 +31,28 @@ function LoginPage({setUser}) {
                 <h2 className="mb-6 text-2xl font-semibold tracking-tight text-slate-900">Login</h2>
 
                 <LoginAlert alertState={alertState} />
-                <div className="space-y-4">
+                <form className="space-y-4" onSubmit={handleLogin}>
                     <input
                         type="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="Email"
-                        className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-slate-400"
+                        className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-base text-slate-900 outline-none transition focus:border-slate-400 sm:text-sm"
                     />
                     <input
                         type="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         placeholder="Password"
-                        className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-slate-400"
+                        className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-base text-slate-900 outline-none transition focus:border-slate-400 sm:text-sm"
                     />
                     <button
-                        onClick={handleLogin}
-                        className="w-full rounded-xl bg-slate-900 px-4 py-3 text-sm font-medium text-white transition hover:bg-slate-800"
+                        type="submit"
+                        className="w-full rounded-xl bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-800"
                     >
                         Login
                     </button>
-                </div>
+                </form>
             </div>
         </div>
     );

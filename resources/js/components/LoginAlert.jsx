@@ -1,9 +1,9 @@
 import React from 'react';
 
 const alertStyles = {
-    error: 'border-red-200 bg-red-50 text-red-700',
+    error: 'border-rose-200 bg-rose-50 text-rose-700',
     lock: 'border-amber-200 bg-amber-50 text-amber-700',
-    'rate-limit': 'border-blue-200 bg-blue-50 text-blue-700',
+    'rate-limit': 'border-sky-200 bg-sky-50 text-sky-700',
 };
 
 function LoginAlert({ alertState }) {
@@ -13,11 +13,11 @@ function LoginAlert({ alertState }) {
 
     return (
         <div
-            className={`mb-4 rounded-xl border px-4 py-3 text-sm ${alertStyles[alertState.type] ?? alertStyles.error}`}
+            className={`mb-5 rounded-xl border px-4 py-3 text-sm ${alertStyles[alertState.type] ?? alertStyles.error}`}
             role="alert"
         >
-            <p className="font-medium">{alertState.title}</p>
-            <p className="mt-1">{alertState.message}</p>
+            <p className="font-bold">{alertState.title}</p>
+            <p className="mt-1 opacity-90">{alertState.message}</p>
         </div>
     );
 }

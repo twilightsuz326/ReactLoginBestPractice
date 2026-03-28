@@ -6,6 +6,7 @@ import LoginPage from './components/LoginPage';
 import Home from './components/Home';
 import DashboardPage from './components/DashboardPage';
 import About from './components/About';
+import DesignSample from './components/DesignSample';
 
 function MainApp() {
     const [user, setUser] = useState(null);
@@ -32,6 +33,7 @@ function MainApp() {
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/login" element={<LoginPage setUser={setUser} />} />
+                <Route path="/design-sample" element={<DesignSample />} />
                 <Route
                     path="/dashboard"
                     element={user ? <DashboardPage user={user} /> : <Navigate to="/login" />}
